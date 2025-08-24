@@ -26,9 +26,30 @@ export async function GET(request: NextRequest) {
       }, { status: 500 })
     }
 
-    const supabase = createClient(supabaseUrl, supabaseAnonKey)
+             const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+           auth: {
+             persistSession: false
+           },
+           global: {
+             fetch: fetch.bind(globalThis)
+           }
+         })
 
-             // Test database query
+             // Test basic connectivity first
+         let connectivityTest = false
+         try {
+           const response = await fetch(`${supabaseUrl}/rest/v1/`, {
+             headers: {
+               'apikey': supabaseAnonKey,
+               'Authorization': `Bearer ${supabaseAnonKey}`
+             }
+           })
+           connectivityTest = response.ok
+         } catch (connectError) {
+           console.error('Connectivity test failed:', connectError)
+         }
+
+         // Test database query
          let dbOk = false
          let sample: any[] = []
          let dbError: any = null
@@ -49,6 +70,11 @@ export async function GET(request: NextRequest) {
            dbOk = false
            dbError = error
            console.error('Database error:', error)
+           console.error('Error details:', {
+             message: (error as any)?.message,
+             stack: (error as any)?.stack,
+             name: (error as any)?.name
+           })
          }
 
          // Return debug information
@@ -58,6 +84,7 @@ export async function GET(request: NextRequest) {
            supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
            anonKeyPresent: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
            serviceRolePresent: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+           connectivityTest,
            dbOk,
            sample,
            error: dbOk ? null : (dbError as any)?.message || 'Unknown database error'
