@@ -28,41 +28,44 @@ export async function GET(request: NextRequest) {
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-    // Test database query
-    let dbOk = false
-    let sample: any[] = []
+             // Test database query
+         let dbOk = false
+         let sample: any[] = []
+         let dbError: any = null
 
-    try {
-      const { data, error } = await supabase
-        .from('quizzes')
-        .select('slug, max_score')
-        .limit(3)
+         try {
+           const { data, error } = await supabase
+             .from('quizzes')
+             .select('slug, max_score')
+             .limit(3)
 
-      if (error) {
-        throw error
-      }
+           if (error) {
+             throw error
+           }
 
-      dbOk = true
-      sample = data || []
-    } catch (dbError) {
-      dbOk = false
-      console.error('Database error:', dbError)
-    }
+           dbOk = true
+           sample = data || []
+         } catch (error) {
+           dbOk = false
+           dbError = error
+           console.error('Database error:', error)
+         }
 
-    // Return debug information
-    return NextResponse.json({
-      baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
-      appName: process.env.NEXT_PUBLIC_APP_NAME,
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-      anonKeyPresent: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-      serviceRolePresent: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-      dbOk,
-      sample
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+         // Return debug information
+         return NextResponse.json({
+           baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
+           appName: process.env.NEXT_PUBLIC_APP_NAME,
+           supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+           anonKeyPresent: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+           serviceRolePresent: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+           dbOk,
+           sample,
+           error: dbOk ? null : (dbError as any)?.message || 'Unknown database error'
+         }, {
+           headers: {
+             'Content-Type': 'application/json'
+           }
+         })
 
   } catch (error) {
     console.error('Debug route error:', error)
