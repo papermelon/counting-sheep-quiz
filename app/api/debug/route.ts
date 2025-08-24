@@ -1,7 +1,3 @@
-Create/overwrite file: app/api/debug/route.ts
-
-Contents:
---------------------------------
 import { createClient } from '@supabase/supabase-js';
 
 // Avoid caching and force Node runtime (NOT Edge)
@@ -52,4 +48,3 @@ export async function GET(req: Request) {
     { headers: { 'content-type': 'application/json; charset=utf-8' } }
   );
 }
---------------------------------
