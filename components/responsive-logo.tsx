@@ -12,16 +12,13 @@ export function ResponsiveLogo() {
         />
       </div>
       
-      {/* Mobile: Just the sheep icon */}
+      {/* Mobile: Just the sheep logo */}
       <div className="md:hidden">
-        <div className="flex items-center space-x-3">
-          <div className="bg-black rounded-lg p-2 w-12 h-12 flex items-center justify-center">
-            <div className="text-white text-2xl">🐑</div>
-          </div>
-          <span className="text-white font-bold text-lg">
-            THE COUNTING SHEEP PROJECT
-          </span>
-        </div>
+        <img 
+          src="/images/logomark.png" 
+          alt="Counting Sheep Logomark" 
+          className="w-12 h-12" 
+        />
       </div>
     </Link>
   )
