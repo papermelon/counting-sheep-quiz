@@ -130,7 +130,7 @@ export function SleepPersonalityQuiz() {
         </CardHeader>
         <CardContent className="text-center">
           <Button
-            onClick={() => setQuizState({ ...quizState, currentQuestion: 0 })}
+            onClick={() => setQuizState({ currentQuestion: 0, answers: {}, isComplete: false })}
             size="lg"
             className="bg-[#F7E5C8] hover:bg-[#F7E5C8]/80 text-[#221F3C] font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
           >

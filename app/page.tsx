@@ -52,18 +52,6 @@ export default function HomePage() {
           
           <div className="max-w-4xl mx-auto mb-16">
             <SleepPersonalityQuiz />
-            
-            {/* Direct Link */}
-            <div className="text-center mt-6">
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-[#F7E5C8] text-[#F7E5C8] hover:bg-[#F7E5C8]/10 bg-transparent px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
-              >
-                <Link href="/quiz/sleep-personality">Take Full Quiz</Link>
-              </Button>
-            </div>
           </div>
         </div>
 
