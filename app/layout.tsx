@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import "./globals.css"
+import GoogleAnalytics from "@/components/google-analytics"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,7 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable} antialiased`}>
-      <body className="font-sans bg-[#221F3C] text-white min-h-screen">{children}</body>
+      <body className="font-sans bg-[#221F3C] text-white min-h-screen">
+        <GoogleAnalytics />
+        {children}
+      </body>
     </html>
   )
 }

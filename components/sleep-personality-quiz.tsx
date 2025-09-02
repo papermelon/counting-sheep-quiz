@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress"
 import { sleepPersonalityQuiz, calculateSleepPersonalityScore } from "@/lib/sleep-personality-data"
 import { sleepPersonalityRecommendations } from "@/lib/sleep-personality-recommendations"
+import { trackQuizStart, trackQuizComplete, trackQuizShare } from "@/lib/analytics"
 import { Share2, RotateCcw, Download } from "lucide-react"
 
 interface QuizState {
@@ -61,6 +62,7 @@ export function SleepPersonalityQuiz() {
     if (quizState.currentQuestion === sleepPersonalityQuiz.questions.length) {
       // Quiz complete, calculate result
       const result = calculateSleepPersonalityScore(newAnswers)
+      trackQuizComplete('sleep-personality', result.normalizedScore)
       setQuizState({
         currentQuestion: 0,
         answers: newAnswers,
@@ -108,6 +110,7 @@ export function SleepPersonalityQuiz() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button
                 onClick={() => {
+                  trackQuizShare('sleep-personality', quizState.result.category.name)
                   // Share functionality - you can implement this later
                   navigator.share?.({
                     title: `I'm a ${quizState.result.category.name}!`,
@@ -268,7 +271,10 @@ export function SleepPersonalityQuiz() {
         </CardHeader>
         <CardContent className="text-center">
           <Button
-            onClick={() => setQuizState({ currentQuestion: 1, answers: {}, isComplete: false })}
+            onClick={() => {
+              trackQuizStart('sleep-personality')
+              setQuizState({ currentQuestion: 1, answers: {}, isComplete: false })
+            }}
             size="lg"
             className="bg-[#F7E5C8] hover:bg-[#F7E5C8]/80 text-[#221F3C] font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
           >

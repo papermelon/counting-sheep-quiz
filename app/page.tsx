@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 import { SleepPersonalityQuiz } from "@/components/sleep-personality-quiz"
 import { ResponsiveLogo } from "@/components/responsive-logo"
 import { createClient } from "@/lib/supabase/server"
+import { trackButtonClick } from "@/lib/analytics"
 
 export default async function HomePage() {
   const supabase = await createClient()
