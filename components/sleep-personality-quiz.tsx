@@ -124,13 +124,13 @@ export function SleepPersonalityQuiz() {
           <CardTitle className="text-3xl text-[#2F2B4F] mb-2">
             {sleepPersonalityQuiz.title}
           </CardTitle>
-          <CardDescription className="text-xl text-[#B2A4D4]">
+          <CardDescription className="text-xl text-[#241E40]">
             {sleepPersonalityQuiz.description}
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
           <Button
-            onClick={() => setQuizState({ currentQuestion: 0, answers: {}, isComplete: false })}
+            onClick={() => setQuizState({ currentQuestion: 1, answers: {}, isComplete: false })}
             size="lg"
             className="bg-[#F7E5C8] hover:bg-[#F7E5C8]/80 text-[#221F3C] font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
           >
