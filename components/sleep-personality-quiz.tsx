@@ -68,7 +68,7 @@ export function SleepPersonalityQuiz() {
 
   if (quizState.isComplete && quizState.result) {
     return (
-      <Card className="bg-gradient-to-br from-[#DEDFFA]/20 to-[#B2A4D4]/10 border-[#F7E5C8]/30 backdrop-blur-sm">
+      <Card className="bg-gradient-to-br from-[#DEDFFA]/20 to-[#B2A4D4]/10 border-[#B2A4D4]/30 backdrop-blur-sm">
         <CardHeader className="text-center">
           <div className="text-6xl mb-4">{quizState.result.category.emoji}</div>
           <CardTitle className="text-3xl text-[#F7E5C8] mb-2">
@@ -115,10 +115,10 @@ export function SleepPersonalityQuiz() {
     )
   }
 
-  if (quizState.currentQuestion === 0 && Object.keys(quizState.answers).length === 0) {
+  if (quizState.currentQuestion === 0 && Object.keys(quizState.answers).length === 0 && !quizState.isComplete) {
     // Landing page
     return (
-      <Card className="bg-gradient-to-br from-[#DEDFFA]/20 to-[#B2A4D4]/10 border-[#F7E5C8]/30 backdrop-blur-sm hover:bg-[#DEDFFA]/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#F7E5C8]/20">
+      <Card className="bg-gradient-to-br from-[#DEDFFA]/20 to-[#B2A4D4]/10 border-[#B2A4D4]/30 backdrop-blur-sm hover:bg-[#DEDFFA]/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#B2A4D4]/20">
         <CardHeader className="text-center">
           <div className="text-6xl mb-4">🐑</div>
           <CardTitle className="text-3xl text-[#F7E5C8] mb-2">
@@ -145,7 +145,7 @@ export function SleepPersonalityQuiz() {
   const progress = ((quizState.currentQuestion + 1) / sleepPersonalityQuiz.questions.length) * 100
 
   return (
-    <Card className="bg-gradient-to-br from-[#DEDFFA]/20 to-[#B2A4D4]/10 border-[#F7E5C8]/30 backdrop-blur-sm">
+    <Card className="bg-gradient-to-br from-[#DEDFFA]/20 to-[#B2A4D4]/10 border-[#B2A4D4]/30 backdrop-blur-sm">
       <CardHeader className="text-center">
         <div className="mb-4">
           <div className="text-sm text-[#B2A4D4] mb-2">
@@ -164,7 +164,7 @@ export function SleepPersonalityQuiz() {
               key={value}
               onClick={() => answerQuestion(parseInt(value))}
               variant="outline"
-              className="border-[#F7E5C8]/30 text-[#F7E5C8] hover:bg-[#F7E5C8]/10 hover:border-[#F7E5C8] transition-all duration-200 h-auto py-4 text-left justify-start"
+              className="border-[#B2A4D4]/30 text-[#B2A4D4] hover:bg-[#B2A4D4]/10 hover:border-[#B2A4D4] transition-all duration-200 h-auto py-4 text-left justify-start"
             >
               <span className="font-semibold mr-3 text-lg">{value}.</span>
               <span className="text-base">{label}</span>
