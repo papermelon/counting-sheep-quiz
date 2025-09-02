@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
@@ -19,11 +19,32 @@ interface QuizState {
 }
 
 export function SleepPersonalityQuiz() {
-  const [quizState, setQuizState] = useState<QuizState>({
-    currentQuestion: 0,
-    answers: {},
-    isComplete: false
+  const [quizState, setQuizState] = useState<QuizState>(() => {
+    // Try to restore quiz state from localStorage
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('sleep-personality-quiz-state')
+      if (saved) {
+        try {
+          return JSON.parse(saved)
+        } catch (e) {
+          console.log('Failed to parse saved quiz state')
+        }
+      }
+    }
+    
+    return {
+      currentQuestion: 0,
+      answers: {},
+      isComplete: false
+    }
   })
+
+  // Save quiz state to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('sleep-personality-quiz-state', JSON.stringify(quizState))
+    }
+  }, [quizState])
 
   const startQuiz = () => {
     setQuizState({
@@ -130,7 +151,7 @@ export function SleepPersonalityQuiz() {
         </CardHeader>
         <CardContent className="text-center">
           <Button
-            onClick={() => setQuizState({ currentQuestion: 1, answers: {}, isComplete: false })}
+            onClick={() => setQuizState({ currentQuestion: 0, answers: {}, isComplete: false })}
             size="lg"
             className="bg-[#F7E5C8] hover:bg-[#F7E5C8]/80 text-[#221F3C] font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
           >
