@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { AuthNav } from "@/components/auth-nav"
 import { Footer } from "@/components/footer"
+import { SleepPersonalityQuiz } from "@/components/sleep-personality-quiz"
 
 export default function HomePage() {
   return (
@@ -40,10 +41,37 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Sleep Personality Quiz - Featured */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 text-[#F7E5C8] font-sans">Discover Your Sleep Personality</h2>
+            <p className="text-[#B2A4D4] text-lg max-w-3xl mx-auto">
+              Take our fun personality quiz to discover your chronotype and get personalized sleep insights!
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto mb-16">
+            <SleepPersonalityQuiz />
+            
+            {/* Direct Link */}
+            <div className="text-center mt-6">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-[#F7E5C8] text-[#F7E5C8] hover:bg-[#F7E5C8]/10 bg-transparent px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
+              >
+                <Link href="/quiz/sleep-personality">Take Full Quiz</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Other Sleep Assessments */}
         <div id="assessments" className="mb-20">
-          <h2 className="text-4xl font-bold text-center mb-4 text-[#F7E5C8] font-sans">Choose Your Assessment</h2>
+          <h2 className="text-4xl font-bold text-center mb-4 text-[#F7E5C8] font-sans">Clinical Sleep Assessments</h2>
           <p className="text-center text-[#B2A4D4] mb-12 text-lg">
-            Select the evaluation that best fits your sleep concerns
+            Professional evaluations for specific sleep concerns
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
