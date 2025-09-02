@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { FooterLogo } from "@/components/footer-logo"
 
 export function Footer() {
   return (
@@ -6,7 +7,7 @@ export function Footer() {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex items-center space-x-4">
-            <img src="/images/logomark.png" alt="Counting Sheep Logomark" className="w-8 h-8" />
+            <FooterLogo />
             <p className="text-[#B2A4D4] text-sm">
               © 2025 The Counting Sheep Project. Designing Better Sleep Through Play.
             </p>
