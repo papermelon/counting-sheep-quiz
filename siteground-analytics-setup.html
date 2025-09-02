@@ -1,0 +1,52 @@
+<!-- Google Analytics 4 Tracking Code for www.countingsheepproject.com -->
+<!-- Add this to the <head> section of your main website -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXX1', {
+    page_title: document.title,
+    page_location: window.location.href,
+  });
+</script>
+
+<!-- Cross-domain tracking setup -->
+<script>
+  // Track when users click links to the quiz webapp
+  document.addEventListener('DOMContentLoaded', function() {
+    // Find all links to quiz.countingsheepproject.com
+    const quizLinks = document.querySelectorAll('a[href*="quiz.countingsheepproject.com"]');
+    
+    quizLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        gtag('event', 'cross_domain_click', {
+          event_category: 'navigation',
+          event_label: 'to_quiz_webapp',
+          value: 1
+        });
+      });
+    });
+  });
+</script>
+
+<!-- Optional: Track specific buttons or elements -->
+<script>
+  // Example: Track when users click a "Take Quiz" button
+  document.addEventListener('DOMContentLoaded', function() {
+    const takeQuizButtons = document.querySelectorAll('.take-quiz-btn, [data-track="quiz"]');
+    
+    takeQuizButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        gtag('event', 'button_click', {
+          event_category: 'engagement',
+          event_label: 'take_quiz_from_main_site',
+          value: 1
+        });
+      });
+    });
+  });
+</script>
