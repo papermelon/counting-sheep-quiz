@@ -56,9 +56,9 @@ export function SleepPersonalityQuiz() {
   }
 
   const answerQuestion = (answer: number) => {
-    const newAnswers = { ...quizState.answers, [sleepPersonalityQuiz.questions[quizState.currentQuestion].id]: answer }
+    const newAnswers = { ...quizState.answers, [sleepPersonalityQuiz.questions[quizState.currentQuestion - 1].id]: answer }
     
-    if (quizState.currentQuestion === sleepPersonalityQuiz.questions.length - 1) {
+    if (quizState.currentQuestion === sleepPersonalityQuiz.questions.length) {
       // Quiz complete, calculate result
       const result = calculateSleepPersonalityScore(newAnswers)
       setQuizState({
@@ -268,7 +268,7 @@ export function SleepPersonalityQuiz() {
         </CardHeader>
         <CardContent className="text-center">
           <Button
-            onClick={() => setQuizState({ currentQuestion: 0, answers: {}, isComplete: false })}
+            onClick={() => setQuizState({ currentQuestion: 1, answers: {}, isComplete: false })}
             size="lg"
             className="bg-[#F7E5C8] hover:bg-[#F7E5C8]/80 text-[#221F3C] font-semibold px-8 py-4 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
           >
@@ -279,15 +279,15 @@ export function SleepPersonalityQuiz() {
     )
   }
 
-  const currentQuestion = sleepPersonalityQuiz.questions[quizState.currentQuestion]
-  const progress = ((quizState.currentQuestion + 1) / sleepPersonalityQuiz.questions.length) * 100
+  const currentQuestion = sleepPersonalityQuiz.questions[quizState.currentQuestion - 1]
+  const progress = (quizState.currentQuestion / sleepPersonalityQuiz.questions.length) * 100
 
   return (
     <Card className="bg-gradient-to-br from-[#B2A4D4]/20 to-[#8B7BB8]/20 border-[#B2A4D4]/30 backdrop-blur-sm">
       <CardHeader className="text-center">
         <div className="mb-4">
           <div className="text-sm text-[#B2A4D4] mb-2">
-            Question {quizState.currentQuestion + 1} of {sleepPersonalityQuiz.questions.length}
+            Question {quizState.currentQuestion} of {sleepPersonalityQuiz.questions.length}
           </div>
           <Progress value={progress} className="h-2 bg-[#B2A4D4]/20" />
         </div>
