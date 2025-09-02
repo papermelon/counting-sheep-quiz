@@ -71,15 +71,15 @@ export function SleepPersonalityQuiz() {
       <Card className="bg-gradient-to-br from-[#B2A4D4]/20 to-[#8B7BB8]/20 border-[#B2A4D4]/30 backdrop-blur-sm">
         <CardHeader className="text-center">
           <div className="text-6xl mb-4">{quizState.result.category.emoji}</div>
-          <CardTitle className="text-3xl text-[#F7E5C8] mb-2">
+          <CardTitle className="text-3xl text-[#241E40] mb-2">
             {quizState.result.category.name}
           </CardTitle>
-          <CardDescription className="text-xl text-[#B2A4D4]">
+          <CardDescription className="text-xl text-[#241E40]">
             Score: {quizState.result.normalizedScore}/100
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <p className="text-[#B2A4D4] text-center text-lg leading-relaxed">
+          <p className="text-[#241E40] text-center text-lg leading-relaxed">
             {getRecommendations(quizState.result.category.id)}
           </p>
           
@@ -153,7 +153,7 @@ export function SleepPersonalityQuiz() {
           </div>
           <Progress value={progress} className="h-2 bg-[#B2A4D4]/20" />
         </div>
-        <CardTitle className="text-xl text-[#F7E5C8] leading-relaxed">
+        <CardTitle className="text-xl text-[#241E40] leading-relaxed">
           {currentQuestion.text}
         </CardTitle>
       </CardHeader>
