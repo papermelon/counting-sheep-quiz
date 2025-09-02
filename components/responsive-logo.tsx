@@ -17,7 +17,7 @@ export function ResponsiveLogo() {
         <img 
           src="/images/logomark.png" 
           alt="Counting Sheep Logomark" 
-          className="w-12 h-12" 
+          className="h-12 w-auto" 
         />
       </div>
     </Link>
