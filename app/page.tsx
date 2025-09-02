@@ -5,8 +5,16 @@ import { AuthNav } from "@/components/auth-nav"
 import { Footer } from "@/components/footer"
 import { SleepPersonalityQuiz } from "@/components/sleep-personality-quiz"
 import { ResponsiveLogo } from "@/components/responsive-logo"
+import { createClient } from "@/lib/supabase/server"
 
-export default function HomePage() {
+export default async function HomePage() {
+  const supabase = await createClient()
+  
+  // Get user if authenticated
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
   return (
     <div className="min-h-screen bg-[#221F3C] text-white">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
@@ -29,14 +37,16 @@ export default function HomePage() {
             >
               <Link href="#assessments">Start Your Sleep Journey</Link>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-[#B2A4D4] text-[#B2A4D4] hover:bg-[#B2A4D4]/10 bg-transparent px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
-            >
-              <Link href="/results">View Past Results</Link>
-            </Button>
+            {user && (
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-[#B2A4D4] text-[#B2A4D4] hover:bg-[#B2A4D4]/10 bg-transparent px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
+              >
+                <Link href="/results">View Past Results</Link>
+              </Button>
+            )}
           </div>
         </div>
 

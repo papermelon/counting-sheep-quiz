@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server"
-import { getOrCreateSessionId } from "@/lib/session"
+import { redirect } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -15,11 +15,13 @@ export default async function ResultsPage() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // Get session ID for anonymous users
-  const sessionId = user ? null : getOrCreateSessionId()
+  // Require authentication
+  if (!user) {
+    redirect("/auth/login?message=Please log in to view your results")
+  }
 
-  // Fetch all results for this user/session from new engine table
-  let query = supabase
+  // Fetch all results for this authenticated user only
+  const { data: results, error } = await supabase
     .from("quiz_submissions")
     .select(
       `
@@ -31,15 +33,8 @@ export default async function ResultsPage() {
       )
     `,
     )
+    .eq("user_id", user.id)
     .order("created_at", { ascending: false })
-
-  if (user) {
-    query = query.eq("user_id", user.id)
-  } else if (sessionId) {
-    query = query.eq("session_id", sessionId).is("user_id", null)
-  }
-
-  const { data: results, error } = await query
 
   if (error) {
     console.error("Error fetching results:", error)
