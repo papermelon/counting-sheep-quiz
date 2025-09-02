@@ -4,20 +4,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { AuthNav } from "@/components/auth-nav"
 import { Footer } from "@/components/footer"
 import { SleepPersonalityQuiz } from "@/components/sleep-personality-quiz"
+import { ResponsiveLogo } from "@/components/responsive-logo"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#221F3C] text-white">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
-        <div className="flex justify-between items-center mb-12">
-          <Link href="/" className="hover:opacity-80 transition-opacity">
-            <img src="/images/primary-logo.png" alt="The Counting Sheep Project" className="h-60 w-auto" />
-          </Link>
+        <div className="flex justify-between items-center mb-8 md:mb-12">
+          <ResponsiveLogo />
           <AuthNav />
         </div>
 
         <div className="text-center mb-20">
-          <h1 className="text-6xl font-bold mb-8 text-[#F7E5C8] font-sans">Sweet Dreams Start Here</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-8 text-[#F7E5C8] font-sans">Sweet Dreams Start Here</h1>
           <p className="text-xl text-[#B2A4D4] mb-10 max-w-4xl mx-auto leading-relaxed font-sans">
             Discover your sleep health with our comprehensive, scientifically-backed assessments. Take the guesswork out
             of sleep wellness with personalized insights and actionable recommendations.
