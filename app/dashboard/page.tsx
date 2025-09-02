@@ -53,7 +53,74 @@ export default async function DashboardPage() {
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect("/auth/login")
+    return (
+      <div className="min-h-screen bg-[#221F3C] text-white flex items-center justify-center p-4">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-6xl font-bold text-[#B2A4D4] mb-4">
+              Your Sleep Dashboard
+            </h1>
+            <p className="text-xl text-gray-300 mb-8">
+              Sign up and log in to access your personalized sleep assessment dashboard
+            </p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-[#B2A4D4]/20 to-[#8B7BB8]/20 border-[#B2A4D4]/30 backdrop-blur-sm rounded-2xl p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-[#B2A4D4] mb-4">
+              What You'll Get:
+            </h2>
+            <div className="text-left space-y-3 text-gray-300">
+              <div className="flex items-start space-x-3">
+                <span className="text-[#B2A4D4] text-xl">📊</span>
+                <span>Visual charts showing your sleep health trends over time</span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <span className="text-[#B2A4D4] text-xl">🎯</span>
+                <span>Latest scores from all your sleep assessments</span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <span className="text-[#B2A4D4] text-xl">📈</span>
+                <span>Track improvements and identify patterns</span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <span className="text-[#B2A4D4] text-xl">🔄</span>
+                <span>Quick retake options for regular monitoring</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <Button
+              asChild
+              size="lg"
+              className="bg-[#B2A4D4] text-[#2F2B4F] hover:bg-[#B2A4D4]/90 px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
+            >
+              <Link href="/auth/signup">Create Account</Link>
+            </Button>
+            <div>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-[#B2A4D4] text-[#B2A4D4] hover:bg-[#B2A4D4]/10 bg-transparent px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
+              >
+                <Link href="/auth/login">Already have an account? Log in</Link>
+              </Button>
+            </div>
+            <div className="mt-6">
+              <Button
+                asChild
+                variant="ghost"
+                size="sm"
+                className="text-gray-400 hover:text-white"
+              >
+                <Link href="/">← Back to Home</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   // Get latest scores using RPC

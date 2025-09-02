@@ -37,16 +37,14 @@ export default async function HomePage() {
             >
               <Link href="#assessments">Start Your Sleep Journey</Link>
             </Button>
-            {user && (
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-[#B2A4D4] text-[#B2A4D4] hover:bg-[#B2A4D4]/10 bg-transparent px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
-              >
-                <Link href="/results">View Past Results</Link>
-              </Button>
-            )}
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-[#B2A4D4] text-[#B2A4D4] hover:bg-[#B2A4D4]/10 bg-transparent px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
+            >
+              <Link href="/results">View Past Results</Link>
+            </Button>
           </div>
         </div>
 

@@ -45,6 +45,14 @@ export function AuthNav() {
             size="sm"
             className="border-[#B2A4D4] text-[#B2A4D4] hover:bg-[#B2A4D4]/10 bg-transparent"
           >
+            <Link href="/dashboard">Dashboard</Link>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="border-[#B2A4D4] text-[#B2A4D4] hover:bg-[#B2A4D4]/10 bg-transparent"
+          >
             <Link href="/account">Account</Link>
           </Button>
         </>
