@@ -61,7 +61,7 @@ export const sleepPersonalityQuiz: SleepPersonalityQuiz = {
     },
     {
       "id": 4,
-      "text": "I'd call myself more of an "early bird" than a "night owl."",
+      "text": "I'd call myself more of an \"early bird\" than a \"night owl.\"",
       "polarity": "morning",
       "weight": 1
     },
@@ -121,7 +121,7 @@ export const sleepPersonalityQuiz: SleepPersonalityQuiz = {
     },
     {
       "id": 14,
-      "text": "People around me say I'm definitely a "night person."",
+      "text": "People around me say I'm definitely a \"night person.\"",
       "polarity": "evening",
       "weight": 1
     },
