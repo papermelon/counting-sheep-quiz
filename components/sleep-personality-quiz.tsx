@@ -118,10 +118,10 @@ export function SleepPersonalityQuiz() {
   if (quizState.currentQuestion === 0 && Object.keys(quizState.answers).length === 0 && !quizState.isComplete) {
     // Landing page
     return (
-      <Card className="bg-gradient-to-br from-[#B2A4D4]/20 to-[#8B7BB8]/20 border-[#B2A4D4]/30 backdrop-blur-sm hover:bg-[#B2A4D4]/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#B2A4D4]/20">
+      <Card className="bg-[#B2A4D4] border-[#B2A4D4]/30 backdrop-blur-sm hover:bg-[#B2A4D4]/90 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#B2A4D4]/20">
         <CardHeader className="text-center">
           <div className="text-6xl mb-4">🐑</div>
-          <CardTitle className="text-3xl text-[#F7E5C8] mb-2">
+          <CardTitle className="text-3xl text-[#2F2B4F] mb-2">
             {sleepPersonalityQuiz.title}
           </CardTitle>
           <CardDescription className="text-xl text-[#B2A4D4]">
