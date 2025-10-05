@@ -2,6 +2,7 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
+  // Trigger redeploy to pick up GA environment variable
   "scripts": {
     "build": "next build",
     "dev": "next dev",
